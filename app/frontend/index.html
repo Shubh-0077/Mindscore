@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mental Health Score Predictor</title>
+  <meta name="description" content="Predict a student's mental health score using Machine Learning and lifestyle indicators." />
+
+  <!-- Typography: Space Grotesk (display) + Inter (body/data) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient background layer -->
+  <div class="ambient-bg" aria-hidden="true">
+    <span class="orb orb--blue"></span>
+    <span class="orb orb--teal"></span>
+    <div class="grain"></div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21s-7.5-4.6-10-9.3C.5 8 2.3 4 6.2 4c2 0 3.5 1.1 4.4 2.4C11.5 5.1 13 4 15 4c3.9 0 5.7 4 4.2 7.7C17.5 16.4 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M6.5 12.5h2.4l1.4-2.6 2 4.6 1.3-2h3.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand__name">Mindscore</span>
+      </div>
+      <span class="badge-pill">
+        <span class="badge-pill__dot" aria-hidden="true"></span>
+        ML model online
+      </span>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <p class="eyebrow">Mental Health Score Predictor</p>
+      <h1 class="hero__title">
+        Know where your wellbeing<br class="hero__break" />
+        stands<span class="hero__accent">, today.</span>
+      </h1>
+      <p class="hero__subtitle">
+        Predict a student's mental health score using Machine Learning and lifestyle indicators&mdash;
+        academics, screen time, sleep, and stress&mdash;in a few seconds.
+      </p>
+    </section>
+
+    <!-- ============ PREDICTION CARD ============ -->
+    <section class="predictor" aria-labelledby="form-heading">
+      <div class="predictor-card">
+
+        <div class="predictor-card__head">
+          <h2 id="form-heading">Your lifestyle profile</h2>
+          <p>All fields are required for an accurate prediction.</p>
+        </div>
+
+        <form id="predict-form" novalidate>
+
+          <div class="form-grid">
+
+            <!-- Age -->
+            <div class="field">
+              <div class="field__control">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c0-3.3 3.6-6 8-6s8 2.7 8 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <input type="number" id="age" name="age" placeholder=" " min="1" max="100" step="1" required aria-describedby="age-error" />
+                <label for="age">Age</label>
+              </div>
+              <p class="field__error" id="age-error" role="alert"></p>
+            </div>
+
+            <!-- Gender -->
+            <div class="field">
+              <div class="field__control field__control--select">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <select id="gender" name="gender" required aria-describedby="gender-error">
+                  <option value="" disabled selected hidden> </option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                <label for="gender">Gender</label>
+              </div>
+              <p class="field__error" id="gender-error" role="alert"></p>
+            </div>
+
+            <!-- Country -->
+            <div class="field">
+              <div class="field__control">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.6"/></svg>
+                <input type="text" id="country" name="country" placeholder=" " autocomplete="off" required aria-describedby="country-error" />
+                <label for="country">Country</label>
+              </div>
+              <p class="field__error" id="country-error" role="alert"></p>
+            </div>
+
+            <!-- Academic Level -->
+            <div class="field">
+              <div class="field__control field__control--select">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 11.5V17c0 1.4 2.7 3 6 3s6-1.6 6-3v-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <select id="academic_level" name="academic_level" required aria-describedby="academic_level-error">
+                  <option value="" disabled selected hidden> </option>
+                  <option value="High School">High School</option>
+                  <option value="Undergraduate">Undergraduate</option>
+                  <option value="Graduate">Graduate</option>
+                </select>
+                <label for="academic_level">Academic Level</label>
+              </div>
+              <p class="field__error" id="academic_level-error" role="alert"></p>
+            </div>
+
+            <!-- Most Used Platform -->
+            <div class="field">
+              <div class="field__control field__control--select">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 7.5h6M9 12h6M9 16.5h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <select id="most_used_platform" name="most_used_platform" required aria-describedby="most_used_platform-error">
+                  <option value="" disabled selected hidden> </option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="YouTube">YouTube</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="Snapchat">Snapchat</option>
+                  <option value="Twitter">Twitter</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="WeChat">WeChat</option>
+                  <option value="LINE">LINE</option>
+                  <option value="KakaoTalk">KakaoTalk</option>
+                  <option value="VKontakte">VKontakte</option>
+                </select>
+                <label for="most_used_platform">Most Used Platform</label>
+              </div>
+              <p class="field__error" id="most_used_platform-error" role="alert"></p>
+            </div>
+
+            <!-- Purpose Of Use -->
+            <div class="field">
+              <div class="field__control field__control--select">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21c-4-3-8-6.3-8-11a5.5 5.5 0 0110-3 5.5 5.5 0 0110 3c0 4.7-4 8-8 11z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <select id="purpose_of_use" name="purpose_of_use" required aria-describedby="purpose_of_use-error">
+                  <option value="" disabled selected hidden> </option>
+                  <option value="Education">Education</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Networking">Networking</option>
+                  <option value="News">News</option>
+                </select>
+                <label for="purpose_of_use">Purpose Of Use</label>
+              </div>
+              <p class="field__error" id="purpose_of_use-error" role="alert"></p>
+            </div>
+
+            <!-- Avg Daily Usage Hours -->
+            <div class="field">
+              <div class="field__control">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3.3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <input type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours" placeholder=" " min="0" max="24" step="0.1" required aria-describedby="avg_daily_usage_hours-error" />
+                <label for="avg_daily_usage_hours">Avg. Daily Usage (hrs)</label>
+              </div>
+              <p class="field__error" id="avg_daily_usage_hours-error" role="alert"></p>
+            </div>
+
+            <!-- Daily Unlocks -->
+            <div class="field">
+              <div class="field__control">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="10" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 10V7.5a3.5 3.5 0 117 0V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <input type="number" id="daily_unlocks" name="daily_unlocks" placeholder=" " min="0" step="1" required aria-describedby="daily_unlocks-error" />
+                <label for="daily_unlocks">Daily Phone Unlocks</label>
+              </div>
+              <p class="field__error" id="daily_unlocks-error" role="alert"></p>
+            </div>
+
+            <!-- Study Hours -->
+            <div class="field">
+              <div class="field__control">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 016.5 3H19a1 1 0 011 1v14a1 1 0 01-1 1H6.5A2.5 2.5 0 004 16.5v-11z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 16.5A2.5 2.5 0 006.5 19H19" stroke="currentColor" stroke-width="1.6"/></svg>
+                <input type="number" id="study_hours" name="study_hours" placeholder=" " min="0" max="24" step="0.1" required aria-describedby="study_hours-error" />
+                <label for="study_hours">Study Hours</label>
+              </div>
+              <p class="field__error" id="study_hours-error" role="alert"></p>
+            </div>
+
+            <!-- Physical Activity Hours -->
+            <div class="field">
+              <div class="field__control">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v5m0 0l-4 6m4-6l4 6m-4-3l-4-2m4 2l4-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <input type="number" id="physical_activity_hours" name="physical_activity_hours" placeholder=" " min="0" max="24" step="0.1" required aria-describedby="physical_activity_hours-error" />
+                <label for="physical_activity_hours">Physical Activity (hrs)</label>
+              </div>
+              <p class="field__error" id="physical_activity_hours-error" role="alert"></p>
+            </div>
+
+            <!-- Sleep Hours Per Night -->
+            <div class="field">
+              <div class="field__control">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 3a7.5 7.5 0 000 15 9 9 0 11-9-15c.6 0 1.2.05 1.8.14A7.47 7.47 0 0015 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <input type="number" id="sleep_hours_per_night" name="sleep_hours_per_night" placeholder=" " min="0" max="24" step="0.1" required aria-describedby="sleep_hours_per_night-error" />
+                <label for="sleep_hours_per_night">Sleep (hrs / night)</label>
+              </div>
+              <p class="field__error" id="sleep_hours_per_night-error" role="alert"></p>
+            </div>
+
+            <!-- Stress Level -->
+            <div class="field">
+              <div class="field__control field__control--select">
+                <svg class="field__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h4l2-7 4 14 2-7h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <select id="stress_level" name="stress_level" required aria-describedby="stress_level-error">
+                  <option value="" disabled selected hidden> </option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                  <option value="Very High">Very High</option>
+                </select>
+                <label for="stress_level">Stress Level</label>
+              </div>
+              <p class="field__error" id="stress_level-error" role="alert"></p>
+            </div>
+
+          </div>
+
+          <div class="predictor-card__actions">
+            <button type="submit" id="predict-btn" class="btn-predict">
+              <span class="btn-predict__label">Predict Score</span>
+              <svg class="btn-predict__spinner" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="42" stroke-dashoffset="12"/>
+              </svg>
+            </button>
+            <button type="button" id="reset-btn" class="btn-reset">Reset form</button>
+          </div>
+
+          <p class="form-hint">Press <kbd>Enter</kbd> at any time to run a prediction.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ RESULT ============ -->
+    <section class="result" id="result-section" aria-live="polite">
+
+      <!-- Success state -->
+      <div class="result-card" id="result-card" hidden>
+        <div class="result-card__gauge">
+          <svg viewBox="0 0 160 160" width="160" height="160" aria-hidden="true">
+            <circle class="gauge-track" cx="80" cy="80" r="70" fill="none" stroke-width="10" />
+            <circle class="gauge-fill" id="gauge-fill" cx="80" cy="80" r="70" fill="none" stroke-width="10" stroke-linecap="round" />
+          </svg>
+          <div class="result-card__score">
+            <span id="score-value">0.0</span>
+            <span class="result-card__scale">/ 10</span>
+          </div>
+        </div>
+
+        <div class="result-card__body">
+          <span class="result-card__badge" id="result-badge">Analyzing</span>
+          <h3 id="result-title">Mental Health Score</h3>
+          <p id="result-description">Your predicted score, based on the profile you submitted.</p>
+        </div>
+
+        <button type="button" id="predict-again-btn" class="btn-secondary">Predict again</button>
+      </div>
+
+      <!-- Error state -->
+      <div class="error-card" id="error-card" hidden role="alert">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="15.8" r="1" fill="currentColor"/></svg>
+        <div>
+          <h3>Prediction failed</h3>
+          <p id="error-message">Something went wrong.</p>
+        </div>
+        <button type="button" id="error-retry-btn" class="btn-secondary">Try again</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <p>Developed by Shubham Malkar</p>
+    <p>Powered by FastAPI &bull; Scikit-learn &bull; HTML &bull; CSS &bull; JavaScript</p>
+  </footer>
+
+  <!-- Relative path lets this work when opened directly or served by FastAPI. -->
+  <script src="script.js"></script>
+</body>
+</html>
